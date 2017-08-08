@@ -6,6 +6,7 @@ class QuartersController < ApplicationController
   end
 
   def show
+    @session = Session.new
     @quarter = Quarter.find(params[:id])
 
     render("quarters/show.html.erb")

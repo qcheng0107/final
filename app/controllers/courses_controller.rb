@@ -6,6 +6,9 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @team = Team.new
+    @session = Session.new
+    @registration = Registration.new
     @course = Course.find(params[:id])
 
     render("courses/show.html.erb")

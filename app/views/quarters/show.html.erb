@@ -48,6 +48,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_session" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for course_id -->
+      <div class="form-group">
+        <label for="course_id" class="control-label">
+          Course
+        </label>
+
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :title), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for quarter_id -->
+      <input type="hidden" name="quarter_id" value="<%= @quarter.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Session
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Course</dt>
-      <dd><%= @session.course_id %></dd>
+      <dd>
+        <% if @session.course.present? %>
+          <a href="/courses/<%= @session.course_id %>">
+            <%= @session.course.title %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Quarter</dt>
-      <dd><%= @session.quarter_id %></dd>
+      <dd>
+        <% if @session.quarter.present? %>
+          <a href="/quarters/<%= @session.quarter_id %>">
+            <%= @session.quarter.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

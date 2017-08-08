@@ -16,8 +16,20 @@
 
       <% @registrations.each do |registration| %>
       <tr>
-        <td><%= registration.student.email %></td>
-        <td><%= registration.course.title %></td>
+        <td>
+          <% if registration.student.present? %>
+            <a href="/students/<%= registration.student.id %>">
+              <%= registration.student.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if registration.course.present? %>
+            <a href="/courses/<%= registration.course.id %>">
+              <%= registration.course.title %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/registrations/<%= registration.id %>" class="btn btn-primary">Show</a>
           

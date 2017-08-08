@@ -6,7 +6,13 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Student</dt>
-      <dd><%= @req_receiver.student_id %></dd>
+      <dd>
+        <% if @req_receiver.student.present? %>
+          <a href="/students/<%= @req_receiver.student_id %>">
+            <%= @req_receiver.student.email %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

@@ -15,7 +15,13 @@
 
       <% @req_senders.each do |req_sender| %>
       <tr>
-        <td><%= req_sender.student.email %></td>
+        <td>
+          <% if req_sender.student.present? %>
+            <a href="/students/<%= req_sender.student.id %>">
+              <%= req_sender.student.email %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/req_senders/<%= req_sender.id %>" class="btn btn-primary">Show</a>
           <a href="/req_senders/<%= req_sender.id %>/edit" class="btn btn-warning">Edit</a>

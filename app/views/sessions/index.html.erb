@@ -16,8 +16,20 @@
 
       <% @sessions.each do |session| %>
       <tr>
-        <td><%= session.course.title %></td>
-        <td><%= session.quarter.created_at %></td>
+        <td>
+          <% if session.course.present? %>
+            <a href="/courses/<%= session.course.id %>">
+              <%= session.course.title %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if session.quarter.present? %>
+            <a href="/quarters/<%= session.quarter.id %>">
+              <%= session.quarter.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/sessions/<%= session.id %>" class="btn btn-primary">Show</a>
           <a href="/sessions/<%= session.id %>/edit" class="btn btn-warning">Edit</a>

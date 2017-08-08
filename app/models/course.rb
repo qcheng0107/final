@@ -12,6 +12,10 @@ class Course < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :students,
+             :through => :registrations,
+             :source => :student
+
   # Validations
 
 end

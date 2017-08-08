@@ -12,6 +12,10 @@ class Student < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :courses,
+             :through => :registrations,
+             :source => :course
+
   # Validations
 
   # Include default devise modules. Others available are:

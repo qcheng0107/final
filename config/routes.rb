@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Quarter resource:
+  # CREATE
+  get "/quarters/new", :controller => "quarters", :action => "new"
+  post "/create_quarter", :controller => "quarters", :action => "create"
+
+  # READ
+  get "/quarters", :controller => "quarters", :action => "index"
+  get "/quarters/:id", :controller => "quarters", :action => "show"
+
+  # UPDATE
+  get "/quarters/:id/edit", :controller => "quarters", :action => "edit"
+  post "/update_quarter/:id", :controller => "quarters", :action => "update"
+
+  # DELETE
+  get "/delete_quarter/:id", :controller => "quarters", :action => "destroy"
+  #------------------------------
+
   # Routes for the Team resource:
   # CREATE
   get "/teams/new", :controller => "teams", :action => "new"

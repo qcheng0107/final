@@ -5,6 +5,10 @@ class ReqSender < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :req_receiver,
+             :through => :student,
+             :source => :req_receivers
+
   # Validations
 
 end

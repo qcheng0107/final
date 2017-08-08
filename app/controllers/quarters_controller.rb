@@ -1,6 +1,7 @@
 class QuartersController < ApplicationController
   def index
-    @quarters = Quarter.page(params[:page]).per(10)
+    @q = Quarter.ransack(params[:q])
+    @quarters = @q.result(:distinct => true).includes(:sessions, :courses).page(params[:page]).per(10)
 
     render("quarters/index.html.erb")
   end

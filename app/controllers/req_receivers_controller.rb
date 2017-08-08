@@ -1,6 +1,7 @@
 class ReqReceiversController < ApplicationController
   def index
-    @req_receivers = ReqReceiver.page(params[:page]).per(10)
+    @q = ReqReceiver.ransack(params[:q])
+    @req_receivers = @q.result(:distinct => true).includes(:student, :req_sender).page(params[:page]).per(10)
 
     render("req_receivers/index.html.erb")
   end

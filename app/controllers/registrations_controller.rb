@@ -10,7 +10,8 @@ class RegistrationsController < ApplicationController
   end
 
   def index
-    @registrations = Registration.page(params[:page]).per(10)
+    @q = Registration.ransack(params[:q])
+    @registrations = @q.result(:distinct => true).includes(:student, :course).page(params[:page]).per(10)
 
     render("registrations/index.html.erb")
   end

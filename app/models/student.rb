@@ -1,6 +1,9 @@
 class Student < ApplicationRecord
   # Direct associations
 
+  has_many   :req_senders,
+             :dependent => :destroy
+
   has_many   :registrations,
              :dependent => :destroy
 

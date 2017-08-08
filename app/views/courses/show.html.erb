@@ -26,3 +26,158 @@
     </div>
   </div>
 </div>
+
+<!-- A Course has many registrations -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Registrations
+      </li>
+
+      <% @course.registrations.each do |registration| %>
+        <li class="list-group-item">
+          <a href="/registrations/<%= registration.id %>">
+            <%= registration.student_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/registrations/<%= registration.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/registrations/<%= registration.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_registration/<%= registration.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Course has many sessions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Sessions
+      </li>
+
+      <% @course.sessions.each do |session| %>
+        <li class="list-group-item">
+          <a href="/sessions/<%= session.id %>">
+            <%= session.course_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/sessions/<%= session.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/sessions/<%= session.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_session/<%= session.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Course has many teams -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Teams
+      </li>
+
+      <% @course.teams.each do |team| %>
+        <li class="list-group-item">
+          <a href="/teams/<%= team.id %>">
+            <%= team.course_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/teams/<%= team.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/teams/<%= team.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_team/<%= team.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Course has many students -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Students
+      </li>
+
+      <% @course.students.each do |student| %>
+        <li class="list-group-item">
+          <a href="/students/<%= student.id %>">
+            <%= student.email %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/students/<%= student.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/students/<%= student.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_student/<%= student.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Course has many quarters -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Quarters
+      </li>
+
+      <% @course.quarters.each do |quarter| %>
+        <li class="list-group-item">
+          <a href="/quarters/<%= quarter.id %>">
+            <%= quarter.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/quarters/<%= quarter.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/quarters/<%= quarter.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_quarter/<%= quarter.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

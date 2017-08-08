@@ -20,3 +20,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Quarter has many sessions -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Sessions
+      </li>
+
+      <% @quarter.sessions.each do |session| %>
+        <li class="list-group-item">
+          <a href="/sessions/<%= session.id %>">
+            <%= session.course_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/sessions/<%= session.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/sessions/<%= session.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_session/<%= session.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Quarter has many courses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Courses
+      </li>
+
+      <% @quarter.courses.each do |course| %>
+        <li class="list-group-item">
+          <a href="/courses/<%= course.id %>">
+            <%= course.title %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/courses/<%= course.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Req_receiver resource:
+  # CREATE
+  get "/req_receivers/new", :controller => "req_receivers", :action => "new"
+  post "/create_req_receiver", :controller => "req_receivers", :action => "create"
+
+  # READ
+  get "/req_receivers", :controller => "req_receivers", :action => "index"
+  get "/req_receivers/:id", :controller => "req_receivers", :action => "show"
+
+  # UPDATE
+  get "/req_receivers/:id/edit", :controller => "req_receivers", :action => "edit"
+  post "/update_req_receiver/:id", :controller => "req_receivers", :action => "update"
+
+  # DELETE
+  get "/delete_req_receiver/:id", :controller => "req_receivers", :action => "destroy"
+  #------------------------------
+
   # Routes for the Req_sender resource:
   # CREATE
   get "/req_senders/new", :controller => "req_senders", :action => "new"

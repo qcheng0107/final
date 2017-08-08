@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Req_sender resource:
+  # CREATE
+  get "/req_senders/new", :controller => "req_senders", :action => "new"
+  post "/create_req_sender", :controller => "req_senders", :action => "create"
+
+  # READ
+  get "/req_senders", :controller => "req_senders", :action => "index"
+  get "/req_senders/:id", :controller => "req_senders", :action => "show"
+
+  # UPDATE
+  get "/req_senders/:id/edit", :controller => "req_senders", :action => "edit"
+  post "/update_req_sender/:id", :controller => "req_senders", :action => "update"
+
+  # DELETE
+  get "/delete_req_sender/:id", :controller => "req_senders", :action => "destroy"
+  #------------------------------
+
   # Routes for the Skill resource:
   # CREATE
   get "/skills/new", :controller => "skills", :action => "new"

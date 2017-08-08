@@ -1,6 +1,6 @@
 class QuartersController < ApplicationController
   def index
-    @quarters = Quarter.all
+    @quarters = Quarter.page(params[:page]).per(10)
 
     render("quarters/index.html.erb")
   end

@@ -1,6 +1,6 @@
 class ReqSendersController < ApplicationController
   def index
-    @req_senders = ReqSender.all
+    @req_senders = ReqSender.page(params[:page]).per(10)
 
     render("req_senders/index.html.erb")
   end

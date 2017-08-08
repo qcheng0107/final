@@ -1,6 +1,6 @@
 class ReqReceiversController < ApplicationController
   def index
-    @req_receivers = ReqReceiver.all
+    @req_receivers = ReqReceiver.page(params[:page]).per(10)
 
     render("req_receivers/index.html.erb")
   end

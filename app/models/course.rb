@@ -12,6 +12,10 @@ class Course < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :quarters,
+             :through => :sessions,
+             :source => :quarter
+
   has_many   :students,
              :through => :registrations,
              :source => :student

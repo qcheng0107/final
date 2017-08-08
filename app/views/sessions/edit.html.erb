@@ -33,7 +33,7 @@
           Quarter
         </label>
 
-        <input type="text" id="quarter_id" name="quarter_id" placeholder="Quarter" class="form-control" value="<%= @session.quarter_id %>">
+        <%= select_tag(:quarter_id, options_from_collection_for_select(Quarter.all, :id, :created_at, @session.quarter_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">

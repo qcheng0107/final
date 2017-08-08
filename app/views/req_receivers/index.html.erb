@@ -15,7 +15,7 @@
 
       <% @req_receivers.each do |req_receiver| %>
       <tr>
-        <td><%= req_receiver.student_id %></td>
+        <td><%= req_receiver.student.email %></td>
         <td>
           <a href="/req_receivers/<%= req_receiver.id %>" class="btn btn-primary">Show</a>
           <a href="/req_receivers/<%= req_receiver.id %>/edit" class="btn btn-warning">Edit</a>

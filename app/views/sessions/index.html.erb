@@ -16,7 +16,7 @@
 
       <% @sessions.each do |session| %>
       <tr>
-        <td><%= session.course_id %></td>
+        <td><%= session.course.title %></td>
         <td><%= session.quarter_id %></td>
         <td>
           <a href="/sessions/<%= session.id %>" class="btn btn-primary">Show</a>

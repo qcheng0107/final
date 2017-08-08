@@ -12,6 +12,10 @@ class Student < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :teams,
+             :through => :courses,
+             :source => :teams
+
   has_many   :courses,
              :through => :registrations,
              :source => :course

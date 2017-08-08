@@ -5,6 +5,10 @@ class Team < ApplicationRecord
 
   # Indirect associations
 
+  has_one    :student,
+             :through => :course,
+             :source => :students
+
   # Validations
 
 end

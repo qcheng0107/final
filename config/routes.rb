@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "courses#index"
   # Routes for the Req_receiver resource:
   # CREATE
   get "/req_receivers/new", :controller => "req_receivers", :action => "new"

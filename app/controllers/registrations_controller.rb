@@ -1,4 +1,14 @@
 class RegistrationsController < ApplicationController
+  before_action :current_user_must_be_registration_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_registration_student
+    registration = Registration.find(params[:id])
+
+    unless current_user == registration.student
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @registrations = Registration.all
 

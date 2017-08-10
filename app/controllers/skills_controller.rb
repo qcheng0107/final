@@ -1,12 +1,13 @@
 class SkillsController < ApplicationController
   def index
     @q = Skill.ransack(params[:q])
-    @skills = @q.result(:distinct => true).page(params[:page]).per(10)
+    @skills = @q.result(:distinct => true).includes(:taggings, :students, :teams).page(params[:page]).per(10)
 
     render("skills/index.html.erb")
   end
 
   def show
+    @tagging = Tagging.new
     @skill = Skill.find(params[:id])
 
     render("skills/show.html.erb")
@@ -23,6 +24,7 @@ class SkillsController < ApplicationController
 
     @skill.student_id = params[:student_id]
     @skill.team_id = params[:team_id]
+    @skill.skill = params[:skill]
 
     save_status = @skill.save
 
@@ -51,6 +53,7 @@ class SkillsController < ApplicationController
 
     @skill.student_id = params[:student_id]
     @skill.team_id = params[:team_id]
+    @skill.skill = params[:skill]
 
     save_status = @skill.save
 

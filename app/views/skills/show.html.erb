@@ -11,6 +11,9 @@
       <dt>Team</dt>
       <dd><%= @skill.team_id %></dd>
 
+      <dt>Skill</dt>
+      <dd><%= @skill.skill %></dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -24,5 +27,130 @@
         Delete
       </a>
     </div>
+  </div>
+</div>
+
+<!-- A Skill has many taggings -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Taggings
+      </li>
+
+      <% @skill.taggings.each do |tagging| %>
+        <li class="list-group-item">
+          <a href="/taggings/<%= tagging.id %>">
+            <%= tagging.skill_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/taggings/<%= tagging.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/taggings/<%= tagging.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_tagging" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for skill_id -->
+      <input type="hidden" name="skill_id" value="<%= @skill.id %>">
+
+      <!-- Label and input for student_id -->
+      <div class="form-group">
+        <label for="student_id" class="control-label">
+          Student
+        </label>
+
+        <%= select_tag(:student_id, options_from_collection_for_select(Student.all, :id, :email), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for team_id -->
+      <div class="form-group">
+        <label for="team_id" class="control-label">
+          Team
+        </label>
+
+        <%= select_tag(:team_id, options_from_collection_for_select(Team.all, :id, :course_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Tagging
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Skill has many students -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Students
+      </li>
+
+      <% @skill.students.each do |student| %>
+        <li class="list-group-item">
+          <a href="/students/<%= student.id %>">
+            <%= student.email %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/students/<%= student.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/students/<%= student.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_student/<%= student.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Skill has many teams -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Teams
+      </li>
+
+      <% @skill.teams.each do |team| %>
+        <li class="list-group-item">
+          <a href="/teams/<%= team.id %>">
+            <%= team.course_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/teams/<%= team.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/teams/<%= team.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_team/<%= team.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

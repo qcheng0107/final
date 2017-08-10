@@ -18,10 +18,13 @@
       <dd>
         <% if @session.quarter.present? %>
           <a href="/quarters/<%= @session.quarter_id %>">
-            <%= @session.quarter.created_at %>
+            <%= @session.quarter.year %>
           </a>
         <% end %>
       </dd>
+
+      <dt>Session</dt>
+      <dd><%= @session.session %></dd>
 
     </dl>
 

@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
 
     @session.course_id = params[:course_id]
     @session.quarter_id = params[:quarter_id]
+    @session.session = params[:session]
 
     save_status = @session.save
 
@@ -51,6 +52,7 @@ class SessionsController < ApplicationController
 
     @session.course_id = params[:course_id]
     @session.quarter_id = params[:quarter_id]
+    @session.session = params[:session]
 
     save_status = @session.save
 

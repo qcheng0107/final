@@ -22,6 +22,8 @@ class QuartersController < ApplicationController
   def create
     @quarter = Quarter.new
 
+    @quarter.year = params[:year]
+    @quarter.quarter = params[:quarter]
 
     save_status = @quarter.save
 
@@ -48,6 +50,8 @@ class QuartersController < ApplicationController
   def update
     @quarter = Quarter.find(params[:id])
 
+    @quarter.year = params[:year]
+    @quarter.quarter = params[:quarter]
 
     save_status = @quarter.save
 

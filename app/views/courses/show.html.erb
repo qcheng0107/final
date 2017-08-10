@@ -117,7 +117,16 @@
           Quarter
         </label>
 
-        <%= select_tag(:quarter_id, options_from_collection_for_select(Quarter.all, :id, :created_at), :class => "form-control") %>
+        <%= select_tag(:quarter_id, options_from_collection_for_select(Quarter.all, :id, :year), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for session -->
+      <div class="form-group">
+        <label for="session" class="control-label">
+          Session
+        </label>
+
+        <input type="text" id="session" name="session" placeholder="Session" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">
@@ -164,6 +173,15 @@
 
       <!-- Label and input for course_id -->
       <input type="hidden" name="course_id" value="<%= @course.id %>">
+
+      <!-- Label and input for team_name -->
+      <div class="form-group">
+        <label for="team_name" class="control-label">
+          Team name
+        </label>
+
+        <input type="text" id="team_name" name="team_name" placeholder="Team name" class="form-control" value="">
+      </div>
 
       <button class="btn btn-block btn-success">
         Create Team
@@ -217,7 +235,7 @@
       <% @course.quarters.each do |quarter| %>
         <li class="list-group-item">
           <a href="/quarters/<%= quarter.id %>">
-            <%= quarter.created_at %>
+            <%= quarter.year %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/quarters/<%= quarter.id %>" class="btn btn-primary">

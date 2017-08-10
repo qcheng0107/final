@@ -1,24 +1,14 @@
 <div class="page-header">
   <h1>
-    Quarters
-    <a href="/quarters/new" class="btn btn-lg btn-success">New Quarter</a>
+    Taggings
+    <a href="/taggings/new" class="btn btn-lg btn-success">New Tagging</a>
   </h1>
 </div><div class="row mb-1">
   <div class="col-md-12">
-    <%= search_form_for @q, :class => collapse_search_form, :id => "quarters_filters" do |f| %>
+    <%= search_form_for @q, :class => collapse_search_form, :id => "taggings_filters" do |f| %>
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
-    <%= f.label :year_cont, "Year contains" %>
-    <%= f.text_field :year_cont, :class => "form-control", :placeholder => "Year contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :quarter_cont, "Quarter contains" %>
-    <%= f.text_field :quarter_cont, :class => "form-control", :placeholder => "Quarter contains" %>
-  </div>
-
-<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -59,15 +49,27 @@
       </script>
 
         <div class="form-group">
-      <%= f.label :courses_title_cont, "Course title contains" %>
-      <%= f.text_field :courses_title_cont, :class => "form-control", :placeholder => "Course title contains" %>
+      <%= f.label :student_email_cont, "Student email contains" %>
+      <%= f.text_field :student_email_cont, :class => "form-control", :placeholder => "Student email contains" %>
     </div>
+
+<div class="form-group">
+  <%= f.label :student_id, "Skill Student" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :skill_student_id_gteq, :class => "form-control", :placeholder => "Skill Student greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :skill_student_id_lteq, :class => "form-control", :placeholder => "Skill Student less than or equal to" %>
+    </div>
+  </div>
+</div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
-      <a href="/quarters" class="btn btn-default btn-block mb-1">Clear filters</a>
+      <a href="/taggings" class="btn btn-default btn-block mb-1">Clear filters</a>
     <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#quarters_filters">
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#taggings_filters">
       Show Filters
     </a>
   </div>
@@ -77,23 +79,43 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Year</th>
-        <th>Quarter</th>
+        <th>Skill</th>
+        <th>Student</th>
+        <th>Team</th>
         <th>Actions</th>
       </tr>
 
-      <% @quarters.each do |quarter| %>
+      <% @taggings.each do |tagging| %>
       <tr>
-        <td><%= quarter.year %></td>
-        <td><%= quarter.quarter %></td>
         <td>
-          <a href="/quarters/<%= quarter.id %>" class="btn btn-primary">Show</a>
-          <a href="/quarters/<%= quarter.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_quarter/<%= quarter.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% if tagging.skill.present? %>
+            <a href="/skills/<%= tagging.skill.id %>">
+              <%= tagging.skill.student_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if tagging.student.present? %>
+            <a href="/students/<%= tagging.student.id %>">
+              <%= tagging.student.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if tagging.team.present? %>
+            <a href="/teams/<%= tagging.team.id %>">
+              <%= tagging.team.course_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <a href="/taggings/<%= tagging.id %>" class="btn btn-primary">Show</a>
+          <a href="/taggings/<%= tagging.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
       <% end %>
     </table>
-    <%= paginate @quarters, theme: 'twitter-bootstrap-4' %>
+    <%= paginate @taggings, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

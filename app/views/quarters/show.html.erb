@@ -5,6 +5,12 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
+      <dt>Year</dt>
+      <dd><%= @quarter.year %></dd>
+
+      <dt>Quarter</dt>
+      <dd><%= @quarter.quarter %></dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -65,6 +71,15 @@
 
       <!-- Label and input for quarter_id -->
       <input type="hidden" name="quarter_id" value="<%= @quarter.id %>">
+
+      <!-- Label and input for session -->
+      <div class="form-group">
+        <label for="session" class="control-label">
+          Session
+        </label>
+
+        <input type="text" id="session" name="session" placeholder="Session" class="form-control" value="">
+      </div>
 
       <button class="btn btn-block btn-success">
         Create Session

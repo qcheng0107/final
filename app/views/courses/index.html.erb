@@ -64,44 +64,9 @@
     </div>
 
 <div class="form-group">
-          <%= f.label :created_at, "Quarter Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='quartersgteqcreated_atPicker'>
-                  <%= f.text_field :quarters_created_at_gteq, :class => "form-control", :placeholder => "Quarter Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='quarterslteqcreated_atPicker'>
-                  <%= f.text_field :quarters_created_at_lteq, :class => "form-control", :placeholder => "Quarter Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#quartersgteqcreated_atPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#quarterslteqcreated_atPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#quartersgteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#quarterslteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#quarterslteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#quartersgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
+      <%= f.label :quarters_year_cont, "Quarter year contains" %>
+      <%= f.text_field :quarters_year_cont, :class => "form-control", :placeholder => "Quarter year contains" %>
+    </div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 

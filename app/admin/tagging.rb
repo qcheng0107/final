@@ -1,6 +1,6 @@
-ActiveAdmin.register Session do
+ActiveAdmin.register Tagging do
 
- permit_params :course_id, :quarter_id, :session
+ permit_params :skill_id, :student_id, :team_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

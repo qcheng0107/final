@@ -18,6 +18,24 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for year -->
+      <div class="form-group">
+        <label for="year" class="control-label">
+          Year
+        </label>
+
+        <input type="text" id="year" name="year" placeholder="Year" class="form-control" value="<%= @quarter.year %>">
+      </div>
+
+      <!-- Label and input for quarter -->
+      <div class="form-group">
+        <label for="quarter" class="control-label">
+          Quarter
+        </label>
+
+        <input type="text" id="quarter" name="quarter" placeholder="Quarter" class="form-control" value="<%= @quarter.quarter %>">
+      </div>
+
       <button class="btn btn-success">
         Create Quarter
       </button>

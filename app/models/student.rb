@@ -1,6 +1,9 @@
 class Student < ApplicationRecord
   # Direct associations
 
+  has_many   :taggings,
+             :dependent => :destroy
+
   has_many   :req_receivers,
              :dependent => :destroy
 
@@ -11,6 +14,10 @@ class Student < ApplicationRecord
              :dependent => :destroy
 
   # Indirect associations
+
+  has_many   :skills,
+             :through => :taggings,
+             :source => :skill
 
   has_many   :teams,
              :through => :courses,

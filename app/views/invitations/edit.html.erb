@@ -1,0 +1,49 @@
+<!-- Validation failure messages -->
+<% if @invitation.errors.any? %>
+  <% @invitation.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Invitation #<%= @invitation.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_invitation/<%= @invitation.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for team_id -->
+      <div class="form-group">
+        <label for="team_id" class="control-label">
+          Team
+        </label>
+
+        <%= select_tag(:team_id, options_from_collection_for_select(Team.all, :id, :session_id, @invitation.team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for acceptance -->
+      <div class="form-group">
+        <label for="acceptance" class="control-label">
+          Acceptance
+        </label>
+
+        <input type="text" id="acceptance" name="acceptance" placeholder="Acceptance" class="form-control" value="<%= @invitation.acceptance %>">
+      </div>
+
+      
+      
+
+      <button class="btn btn-warning">
+        Update Invitation
+      </button>
+      or
+      <a href="/invitations/<%= @invitation.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

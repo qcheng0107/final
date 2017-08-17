@@ -1,13 +1,20 @@
 class Team < ApplicationRecord
   # Direct associations
 
-  belongs_to :course
+  belongs_to :session
+
+  has_many   :invitations,
+             :dependent => :destroy
+
+  has_many   :capabilities,
+             :class_name => "Tag",
+             :dependent => :destroy
 
   # Indirect associations
 
-  has_one    :student,
-             :through => :course,
-             :source => :students
+  has_many   :skills,
+             :through => :capabilities,
+             :source => :skill
 
   # Validations
 

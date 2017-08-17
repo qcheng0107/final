@@ -1,0 +1,148 @@
+<div class="page-header">
+  <h1>
+    Taggings
+    <a href="/taggings/new" class="btn btn-lg btn-success">New Tagging</a>
+  </h1>
+</div><div class="row mb-1">
+  <div class="col-md-12">
+    <%= search_form_for @q, :class => collapse_search_form, :id => "taggings_filters" do |f| %>
+      <p class="lead">Narrow results:</p>
+
+        <div class="form-group">
+          <%= f.label :created_at, "Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='created_atgteqPicker'>
+                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='created_atlteqPicker'>
+                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#created_atgteqPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atlteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atgteqPicker').on("dp.change", function (e) {
+                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#created_atlteqPicker').on("dp.change", function (e) {
+                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+        <div class="form-group">
+          <%= f.label :created_at, "User Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='studentgteqcreated_atPicker'>
+                  <%= f.text_field :student_created_at_gteq, :class => "form-control", :placeholder => "User Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='studentlteqcreated_atPicker'>
+                  <%= f.text_field :student_created_at_lteq, :class => "form-control", :placeholder => "User Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#studentgteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#studentlteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#studentgteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#studentlteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#studentlteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#studentgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+<div class="form-group">
+  <%= f.label :user_id, "Skill User" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :skill_user_id_gteq, :class => "form-control", :placeholder => "Skill User greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :skill_user_id_lteq, :class => "form-control", :placeholder => "Skill User less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+
+      <a href="/taggings" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <% end %>
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#taggings_filters">
+      Show Filters
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Skill</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @taggings.each do |tagging| %>
+      <tr>
+        <td>
+          <% if tagging.skill.present? %>
+            <a href="/skills/<%= tagging.skill.id %>">
+              <%= tagging.skill.user_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if tagging.student.present? %>
+            <a href="/users/<%= tagging.student.id %>">
+              <%= tagging.student.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <a href="/taggings/<%= tagging.id %>" class="btn btn-primary">Show</a>
+          <a href="/taggings/<%= tagging.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @taggings, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 class TeamsController < ApplicationController
   def index
     @q = Team.ransack(params[:q])
-    @teams = @q.result(:distinct => true).includes(:course, :student).page(params[:page]).per(10)
+    @teams = @q.result(:distinct => true).includes(:capabilities, :invitations, :session, :skills).page(params[:page]).per(10)
 
     render("teams/index.html.erb")
   end
 
   def show
+    @invitation = Invitation.new
+    @tag = Tag.new
     @team = Team.find(params[:id])
 
     render("teams/show.html.erb")
@@ -21,7 +23,8 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new
 
-    @team.course_id = params[:course_id]
+    @team.session_id = params[:session_id]
+    @team.team_name = params[:team_name]
 
     save_status = @team.save
 
@@ -48,7 +51,8 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
 
-    @team.course_id = params[:course_id]
+    @team.session_id = params[:session_id]
+    @team.team_name = params[:team_name]
 
     save_status = @team.save
 

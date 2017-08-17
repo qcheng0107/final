@@ -1,0 +1,192 @@
+<div class="page-header">
+  <h3>User #<%= @user.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>First name</dt>
+      <dd><%= @user.first_name %></dd>
+
+      <dt>Last name</dt>
+      <dd><%= @user.last_name %></dd>
+
+      <dt>Skill</dt>
+      <dd><%= @user.skill_id %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @user.email %></dd>
+
+      <dt>Password</dt>
+      <dd><%= @user.password %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/users" class="btn btn-primary">
+        Back
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A User has many registrations -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Registrations
+      </li>
+
+      <% @user.registrations.each do |registration| %>
+        <li class="list-group-item">
+          <a href="/registrations/<%= registration.id %>">
+            <%= registration.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/registrations/<%= registration.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <%if current_user == registration.student %>
+              <a href="/registrations/<%= registration.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_registration/<%= registration.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many taggings -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Taggings
+      </li>
+
+      <% @user.taggings.each do |tagging| %>
+        <li class="list-group-item">
+          <a href="/taggings/<%= tagging.id %>">
+            <%= tagging.skill_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/taggings/<%= tagging.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <%if current_user == tagging.student %>
+              <a href="/taggings/<%= tagging.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many invitations -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Invitations
+      </li>
+
+      <% @user.invitations.each do |invitation| %>
+        <li class="list-group-item">
+          <a href="/invitations/<%= invitation.id %>">
+            <%= invitation.team_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/invitations/<%= invitation.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <%if current_user == invitation.user %>
+              <a href="/invitations/<%= invitation.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="/delete_invitation/<%= invitation.id %>" class="btn btn-danger" rel="nofollow">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many courses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Courses
+      </li>
+
+      <% @user.courses.each do |course| %>
+        <li class="list-group-item">
+          <a href="/courses/<%= course.id %>">
+            <%= course.title %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/courses/<%= course.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many skills -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Skills
+      </li>
+
+      <% @user.skills.each do |skill| %>
+        <li class="list-group-item">
+          <a href="/skills/<%= skill.id %>">
+            <%= skill.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/skills/<%= skill.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/skills/<%= skill.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_skill/<%= skill.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

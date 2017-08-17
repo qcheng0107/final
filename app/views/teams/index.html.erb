@@ -9,6 +9,11 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :team_name_cont, "Team name contains" %>
+    <%= f.text_field :team_name_cont, :class => "form-control", :placeholder => "Team name contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -49,14 +54,16 @@
       </script>
 
         <div class="form-group">
-      <%= f.label :course_title_cont, "Course title contains" %>
-      <%= f.text_field :course_title_cont, :class => "form-control", :placeholder => "Course title contains" %>
+  <%= f.label :user_id, "Skill User" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :skills_user_id_gteq, :class => "form-control", :placeholder => "Skill User greater than or equal to" %>
     </div>
-
-<div class="form-group">
-      <%= f.label :student_email_cont, "Student email contains" %>
-      <%= f.text_field :student_email_cont, :class => "form-control", :placeholder => "Student email contains" %>
+    <div class='col-md-6'>
+      <%= f.text_field :skills_user_id_lteq, :class => "form-control", :placeholder => "Skill User less than or equal to" %>
     </div>
+  </div>
+</div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
@@ -72,19 +79,21 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Course</th>
+        <th>Session</th>
+        <th>Team name</th>
         <th>Actions</th>
       </tr>
 
       <% @teams.each do |team| %>
       <tr>
         <td>
-          <% if team.course.present? %>
-            <a href="/courses/<%= team.course.id %>">
-              <%= team.course.title %>
+          <% if team.session.present? %>
+            <a href="/sessions/<%= team.session.id %>">
+              <%= team.session.course_id %>
             </a>
           <% end %>
         </td>
+        <td><%= team.team_name %></td>
         <td>
           <a href="/teams/<%= team.id %>" class="btn btn-primary">Show</a>
           <a href="/teams/<%= team.id %>/edit" class="btn btn-warning">Edit</a>

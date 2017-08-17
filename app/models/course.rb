@@ -1,9 +1,6 @@
 class Course < ApplicationRecord
   # Direct associations
 
-  has_many   :teams,
-             :dependent => :destroy
-
   has_many   :sessions,
              :dependent => :nullify
 
@@ -11,10 +8,6 @@ class Course < ApplicationRecord
              :dependent => :destroy
 
   # Indirect associations
-
-  has_many   :quarters,
-             :through => :sessions,
-             :source => :quarter
 
   has_many   :students,
              :through => :registrations,

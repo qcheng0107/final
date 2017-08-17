@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
   def index
     @q = Session.ransack(params[:q])
-    @sessions = @q.result(:distinct => true).includes(:course, :quarter).page(params[:page]).per(10)
+    @sessions = @q.result(:distinct => true).includes(:course, :teams).page(params[:page]).per(10)
 
     render("sessions/index.html.erb")
   end
 
   def show
+    @team = Team.new
     @session = Session.find(params[:id])
 
     render("sessions/show.html.erb")
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
     @session = Session.new
 
     @session.course_id = params[:course_id]
-    @session.quarter_id = params[:quarter_id]
+    @session.quarter = params[:quarter]
 
     save_status = @session.save
 
@@ -50,7 +51,7 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
 
     @session.course_id = params[:course_id]
-    @session.quarter_id = params[:quarter_id]
+    @session.quarter = params[:quarter]
 
     save_status = @session.save
 

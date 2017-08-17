@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   before_action :current_user_must_be_registration_user, :only => [:edit, :update, :destroy]
 
-  def current_user_must_be_registration_student
+  def current_user_must_be_registration_user
     registration = Registration.find(params[:id])
 
     unless current_user == registration.student
@@ -31,7 +31,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new
 
-    @registration.student_id = params[:student_id]
+    @registration.user_id = params[:user_id]
     @registration.course_id = params[:course_id]
 
     save_status = @registration.save

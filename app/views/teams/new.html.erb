@@ -18,13 +18,22 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for course_id -->
+      <!-- Label and input for session_id -->
       <div class="form-group">
-        <label for="course_id" class="control-label">
-          Course
+        <label for="session_id" class="control-label">
+          Session
         </label>
 
-        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :title, @team.course_id), :class => "form-control") %>
+        <%= select_tag(:session_id, options_from_collection_for_select(Session.all, :id, :course_id, @team.session_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for team_name -->
+      <div class="form-group">
+        <label for="team_name" class="control-label">
+          Team name
+        </label>
+
+        <input type="text" id="team_name" name="team_name" placeholder="Team name" class="form-control" value="<%= @team.team_name %>">
       </div>
 
       <button class="btn btn-success">

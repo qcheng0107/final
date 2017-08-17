@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Tag #<%= @tag.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Team</dt>
+      <dd>
+        <% if @tag.team.present? %>
+          <a href="/teams/<%= @tag.team_id %>">
+            <%= @tag.team.session_id %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Skill</dt>
+      <dd>
+        <% if @tag.skill.present? %>
+          <a href="/skills/<%= @tag.skill_id %>">
+            <%= @tag.skill.user_id %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tags" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tags/<%= @tag.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tag/<%= @tag.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

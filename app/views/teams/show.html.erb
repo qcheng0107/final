@@ -5,14 +5,17 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Course</dt>
+      <dt>Session</dt>
       <dd>
-        <% if @team.course.present? %>
-          <a href="/courses/<%= @team.course_id %>">
-            <%= @team.course.title %>
+        <% if @team.session.present? %>
+          <a href="/sessions/<%= @team.session_id %>">
+            <%= @team.session.course_id %>
           </a>
         <% end %>
       </dd>
+
+      <dt>Team name</dt>
+      <dd><%= @team.team_name %></dd>
 
     </dl>
 
@@ -30,28 +33,139 @@
   </div>
 </div>
 
-<!-- A Team has many student -->
+<!-- A Team has many capabilities -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Student
+        Capabilities
       </li>
 
-      <% @team.student.each do |student| %>
+      <% @team.capabilities.each do |tag| %>
         <li class="list-group-item">
-          <a href="/students/<%= student.id %>">
-            <%= student.email %>
+          <a href="/tags/<%= tag.id %>">
+            <%= tag.team_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/students/<%= student.id %>" class="btn btn-primary">
+            <a href="/tags/<%= tag.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/students/<%= student.id %>/edit" class="btn btn-warning">
+            <a href="/tags/<%= tag.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_student/<%= student.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_tag/<%= tag.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_tag" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for team_id -->
+      <input type="hidden" name="team_id" value="<%= @team.id %>">
+
+      <!-- Label and input for skill_id -->
+      <div class="form-group">
+        <label for="skill_id" class="control-label">
+          Skill
+        </label>
+
+        <%= select_tag(:skill_id, options_from_collection_for_select(Skill.all, :id, :user_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Tag
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Team has many invitations -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Invitations
+      </li>
+
+      <% @team.invitations.each do |invitation| %>
+        <li class="list-group-item">
+          <a href="/invitations/<%= invitation.id %>">
+            <%= invitation.team_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/invitations/<%= invitation.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/invitations/<%= invitation.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_invitation/<%= invitation.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_invitation" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for team_id -->
+      <input type="hidden" name="team_id" value="<%= @team.id %>">
+
+      <!-- Label and input for acceptance -->
+      <div class="form-group">
+        <label for="acceptance" class="control-label">
+          Acceptance
+        </label>
+
+        <input type="text" id="acceptance" name="acceptance" placeholder="Acceptance" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Invitation
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Team has many skills -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Skills
+      </li>
+
+      <% @team.skills.each do |skill| %>
+        <li class="list-group-item">
+          <a href="/skills/<%= skill.id %>">
+            <%= skill.user_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/skills/<%= skill.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/skills/<%= skill.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_skill/<%= skill.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>

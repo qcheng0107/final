@@ -27,13 +27,13 @@
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :title, @session.course_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for quarter_id -->
+      <!-- Label and input for quarter -->
       <div class="form-group">
-        <label for="quarter_id" class="control-label">
+        <label for="quarter" class="control-label">
           Quarter
         </label>
 
-        <%= select_tag(:quarter_id, options_from_collection_for_select(Quarter.all, :id, :created_at, @session.quarter_id), :class => "form-control") %>
+        <input type="text" id="quarter" name="quarter" placeholder="Quarter" class="form-control" value="<%= @session.quarter %>">
       </div>
 
       <button class="btn btn-warning">

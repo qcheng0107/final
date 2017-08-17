@@ -1,7 +1,8 @@
 class Session < ApplicationRecord
   # Direct associations
 
-  belongs_to :quarter
+  has_many   :teams,
+             :dependent => :destroy
 
   belongs_to :course,
              :counter_cache => true

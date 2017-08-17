@@ -5,11 +5,11 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Student</dt>
+      <dt>User</dt>
       <dd>
         <% if @registration.student.present? %>
-          <a href="/students/<%= @registration.student_id %>">
-            <%= @registration.student.email %>
+          <a href="/users/<%= @registration.user_id %>">
+            <%= @registration.student.created_at %>
           </a>
         <% end %>
       </dd>

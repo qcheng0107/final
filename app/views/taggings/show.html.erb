@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Tagging #<%= @tagging.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Skill</dt>
+      <dd>
+        <% if @tagging.skill.present? %>
+          <a href="/skills/<%= @tagging.skill_id %>">
+            <%= @tagging.skill.user_id %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>User</dt>
+      <dd>
+        <% if @tagging.student.present? %>
+          <a href="/users/<%= @tagging.user_id %>">
+            <%= @tagging.student.created_at %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/taggings" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/taggings/<%= @tagging.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tagging/<%= @tagging.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
